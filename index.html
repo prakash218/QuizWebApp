@@ -1,0 +1,54 @@
+<!--Fantacy Design-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Quiz App</title>
+  </head>
+  <body>
+    <div class = "outer">
+      <div class="split left">
+<!--           <object data="sample.pdf#toolbar=0&navpanes=0&scrollbar=0&zoom=110"  width="100%" height="98%">
+          <embed src="sample.pdf#toolbar=0&navpanes=0&scrollbar=0&zoom=110" width="100%" height="98%" />
+          <p>This browser does not support PDFs. Please download the PDF to view it: <a href="sample.pdf">View the PDF</a>.</p>
+    </embed></object> -->
+    <iframe src="sample.pdf#toolbar=0&navpanes=0" width = "100%" height = "98%"></iframe>
+      </div>
+      <div class="quiz-container" >
+      <div class="quiz-header split right" id="quiz">
+
+        <h2 id="question">Question text</h2>
+        <ul>
+          <li>
+            <input type="radio" name="answer" id="a" class="answer">
+            <label for="a" id="a_text">Question</label>
+          </li>
+
+          <li>
+            <input type="radio" name="answer" id="b" class="answer">
+            <label for="b" id="b_text">Question</label>
+          </li>
+
+          <li>
+            <input type="radio" name="answer" id="c" class="answer">
+            <label for="c" id="c_text">Question</label>
+          </li>
+
+          <li>
+            <input type="radio" name="answer" id="d" class="answer">
+            <label for="d" id="d_text">Question</label>
+          </li>
+        </ul>
+        <div id = "frm">
+          <button class = "button" value = "prev" id="prev" data-inline="true"> Prev</button>
+          <button id="submit" class = "button">Submit</button>
+          <button class = "button" value = "next" id="next" data-inline="true"> Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script src="script.js"></script>
+  </body>
+</html>
