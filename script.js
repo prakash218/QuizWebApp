@@ -43,7 +43,7 @@ const d_text        = document.getElementById('d_text')
 const submitBtn     = document.getElementById('submit')
 const prevBtn       = document.getElementById('prev')
 const nextBtn       = document.getElementById('next')
-var console = window.console;
+var console         = window.console;
 
 
 
@@ -66,6 +66,12 @@ function buttonHelper()
     }
     else{
         nextBtn.disabled = false;
+    }
+    if(currentQuiz == quizData.length - 1){
+        submitBtn.style.display = 'block';
+    }
+    else{
+        submitBtn.style.display = 'none';
     }
 }
 
@@ -102,6 +108,21 @@ function deselectAnswers() {
     answerEls.forEach(answerEl => answerEl.checked = false)
 }
 
+function updateScore()
+{
+    const answer = getSelected()
+    if(answer) {
+        if(answer === quizData[currentQuiz].correct) {
+            answers[currentQuiz] = 1;
+            // score++
+        }
+        else {
+            answers[currentQuiz] = 0;
+        }
+    }
+
+}
+
 function getSelected() {
     let answer
 
@@ -115,6 +136,7 @@ function getSelected() {
 }
 
 nextBtn.addEventListener("click",() => {
+    updateScore()
     currentQuiz++;
     if(currentQuiz < quizData.length){
         loadQuiz()
@@ -127,6 +149,7 @@ nextBtn.addEventListener("click",() => {
 
 
 prevBtn.addEventListener("click",() => {
+    updateScore()
     currentQuiz--;
     if(currentQuiz >= 0)
     {
@@ -139,30 +162,14 @@ prevBtn.addEventListener("click",() => {
 })
 
 submitBtn.addEventListener('click', () => {
-    const answer = getSelected()
-    
-    if(answer) {
-        if(answer === quizData[currentQuiz].correct) {
-            answers[currentQuiz] = 1;
-            // score++
-        }
-        else {
-            answers[currentQuiz] = 0;
-        }
+    updateScore()
+    score = getScore()
+    quiz.innerHTML = `
+        <h2>You answered ${score}/${quizData.length} questions correctly</h2>
 
-        currentQuiz++
-
-        if(currentQuiz < quizData.length) {
-            loadQuiz()
-        } else {
-            score = getScore()
-            quiz.innerHTML = `
-                <h2>You answered ${score}/${quizData.length} questions correctly</h2>
-
-                <button onclick="location.reload()" class = "button">Reload</button>
+        <button onclick="location.reload()" class = "button space">Reload</button>
             `
-        }
     }
-})
+    
+)
 
-console.log("end");
